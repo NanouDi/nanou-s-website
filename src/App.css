@@ -1,32 +1,15 @@
-body {
-  background-color: #fce4ec;
-  font-family: Arial, sans-serif;
+
+/* App.css
+   Styles généraux de l'application React.
+   Le design du bureau se trouve dans Desktop.css.
+*/
+
+#root {
+  min-height: 100vh;
+  width: 100%;
 }
 
-h1 {
-  color: #b83280;
-  text-align: center;
+.app {
+  min-height: 100vh;
+  width: 100%;
 }
-
-button {
-  background-color: #b83280;
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 12px;
-  cursor: pointer;
-}
-.box {
-  display: flex;
-  width: 90px;
-  height: 100 px;
-  padding: 10px;
-  border: 5px solid black;
-  margin: 0;
-}
-div{
-  width: 320 px;
-  height: 50 px;
-
-}
-
