@@ -9,7 +9,9 @@ const desktopItems = [
     { id: 'photos', icon: '📸', label: 'Photos' },
     { id: 'prettiest', icon: '💅', label: 'prettiest' },
     { id: 'projects', icon: '🕹️', label: 'Projects' },
+    { id: 'favs', icon: '💌', label: 'Favs' },
     { id: 'contact', icon: '💌', label: 'Socials' },
+
 ];
 
 const windowContent = {
@@ -27,6 +29,18 @@ const windowContent = {
         ),
     },
     prettiest: {
+        title: 'My pics and best videos',
+        content: (
+            <>
+                <h2>just cause I'm narcissistic ♡</h2>
+                <img
+                    src="/IMG_1939.PNG"
+                    alt="A photo of Nanou"
+                />
+            </>
+        ),
+    },
+    favs: {
         title: 'My pics and best videos',
         content: (
             <>
