@@ -9,7 +9,9 @@ const desktopItems = [
     { id: 'photos', icon: '📸', label: 'Photos' },
     { id: 'prettiest', icon: '💅', label: 'prettiest' },
     { id: 'projects', icon: '🕹️', label: 'Projects' },
-    { id: 'contact', icon: '💌', label: 'Contact' },
+    { id: 'favs', icon: '💌', label: 'Favs' },
+    { id: 'contact', icon: '💌', label: 'Socials' },
+
 ];
 
 const windowContent = {
@@ -27,6 +29,18 @@ const windowContent = {
         ),
     },
     prettiest: {
+        title: 'My pics and best videos',
+        content: (
+            <>
+                <h2>just cause I'm narcissistic ♡</h2>
+                <img
+                    src="/IMG_1939.PNG"
+                    alt="A photo of Nanou"
+                />
+            </>
+        ),
+    },
+    favs: {
         title: 'My pics and best videos',
         content: (
             <>
@@ -72,22 +86,43 @@ const windowContent = {
             <>
                 <h2>Things I've made</h2>
                 <article className="post">
-                    <span>001 // LIFE</span>
-                    <h3>Crochet website (from back in the days
+                    <span>001 // WEBSITE</span>
+                    <h3>Crochet website (from back in the days)
                         DO NOT JUDGE
+
                     </h3>
-                    <p>⭐⭐⭐🌟🌟
+                    <p>⭐⭐🌟🌟🌟
                         3 stars thanks <a href={"https://www.notion.com/"}>notion</a> and <b><a href={"https://www.w3schools.com/"}>w3schools</a></b> </p>
                 </article>
                 <article className="post">
-                    <span>001 // LIFE</span>
+                    <span>002 // WEBSITE</span>
+                    <h3>MNU Simulation training website <a href={"https://courslibmnu2024.neocities.org/"}>link</a> </h3>
+                    <p>⭐⭐⭐🌟🌟 Lowkey the same but more professional</p>
+                </article>
+                <article className="post">
+                    <span>001 // PROM DRESS</span>
                     <h3>Welcome to my digital diary</h3>
                     <p>Thoughts, stories and little life updates.</p>
                 </article>
                 <article className="post">
-                    <span>001 // LIFE</span>
+                    <span>001 // POWERPUFF SWEATER </span>
                     <h3>Welcome to my digital diary</h3>
                     <p>Thoughts, stories and little life updates.</p>
+                </article>
+                <article className="post">
+                    <span>001 // BDAY OUTFIT 2024 </span>
+                    <h3>Welcome to my digital diary</h3>
+                    <p>Thoughts, stories and little life updates.</p>
+                </article>
+                <article className="post">
+                    <span>001 // BDAY OUTFIT 2025</span>
+                    <h3>Welcome to my digital diary</h3>
+                    <p>Thoughts, stories and little life updates.</p>
+                </article>
+                <article className="post">
+                    <span>001 // BDAY OUTFIT 2026</span>
+                    <h3></h3>
+                    <p>hello kitty themed hat and colorful shirt </p>
                 </article>
             </>
         ),
@@ -97,8 +132,10 @@ const windowContent = {
         content: (
             <>
                 <h2>Let's connect 💌</h2>
-                <p>Want to collaborate or say hello?</p>
-                <p>Add your social links and email here.</p>
+                <p>Want to collaborate or say hello (I don't bite 🤣) ?</p>
+                <p><a href={"https://www.instagram.com/awesome_nanou/"} >Instagram</a></p>
+                <p><a href={"https://www.tiktok.com/@awsome_nanou"} >Tik tok </a></p>
+                <p><a href={"https://www.patreon.com/c/NanouDi"} >Patreon</a></p>
             </>
         ),
     },
