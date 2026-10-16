@@ -1,0 +1,523 @@
+
+/* ===== NANOU_OS — Y2K CYBER DESKTOP ===== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+    background: #0d0716;
+    color: #f8edff;
+    font-family: "Courier New", monospace;
+}
+
+button,
+a {
+    font: inherit;
+}
+
+button {
+    color: inherit;
+}
+
+/* Main desktop */
+
+.desktop {
+    position: relative;
+    min-height: 100vh;
+    padding: 22px 30px 90px;
+    overflow: hidden;
+    background:
+            radial-gradient(ellipse at 50% 0%, rgba(110, 30, 180, .22), transparent 55%),
+            #0d0716;
+}
+
+.desktop-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 12px 16px;
+    border: 1px solid #7545a3;
+    background: rgba(24, 12, 38, .9);
+    color: #d9a2ff;
+    font-size: .8rem;
+    letter-spacing: .08em;
+    box-shadow: 0 0 14px rgba(155, 65, 255, .12);
+}
+
+.system-status {
+    color: #9bffca;
+}
+
+/* Hero */
+
+.desktop-hero {
+    text-align: center;
+    padding: 45px 10px 30px;
+}
+
+.eyebrow {
+    color: #e6a3ff;
+    font-size: .8rem;
+    letter-spacing: .3em;
+}
+
+.desktop-hero h1 {
+    margin: 12px 0;
+    font-family: Georgia, serif;
+    font-size: clamp(3.5rem, 10vw, 7rem);
+    line-height: 1;
+    color: #fff;
+    text-shadow:
+            3px 3px 0 #8b35ff,
+            0 0 24px rgba(190, 100, 255, .7);
+    letter-spacing: .08em;
+}
+
+.hero-subtitle {
+    color: #d8c6ed;
+    font-size: 1rem;
+}
+
+.hero-decoration {
+    margin-top: 24px;
+    color: #e6a3ff;
+    font-size: 1.3rem;
+}
+
+/* Desktop icons */
+
+.desktop-icons {
+    max-width: 950px;
+    margin: 0 auto;
+}
+
+.section-label {
+    margin-bottom: 20px;
+    color: #d9a2ff;
+    font-size: .85rem;
+    letter-spacing: .06em;
+}
+
+.icon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(105px, 1fr));
+    gap: 18px;
+}
+
+.desktop-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    min-height: 112px;
+    padding: 16px 8px;
+    border: 1px solid #563477;
+    border-radius: 12px;
+    background: linear-gradient(145deg, #241333, #130b20);
+    cursor: pointer;
+    transition: transform .2s, border-color .2s, box-shadow .2s;
+}
+
+.desktop-icon:hover {
+    transform: translateY(-5px);
+    border-color: #e6a3ff;
+    box-shadow: 0 0 20px rgba(183, 87, 255, .35);
+    background: #301747;
+}
+
+.icon-picture {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    border: 1px solid #9d56d4;
+    border-radius: 14px;
+    background: #1a0d2a;
+    font-size: 1.8rem;
+    box-shadow: inset 0 0 14px rgba(173, 83, 255, .15);
+}
+
+.icon-label {
+    color: #f8edff;
+    font-size: .78rem;
+    text-align: center;
+}
+
+/* App windows */
+
+.app-window {
+    position: fixed;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    width: min(720px, calc(100vw - 30px));
+    max-height: min(75vh, 750px);
+    transform: translate(-50%, -50%);
+    border: 1px solid #c77dff;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #130b20;
+    box-shadow:
+            0 0 0 3px rgba(120, 48, 180, .2),
+            0 0 40px rgba(155, 65, 255, .3);
+}
+
+.window-titlebar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: linear-gradient(90deg, #5b238d, #28113e);
+    border-bottom: 1px solid #c77dff;
+    color: white;
+    font-size: .85rem;
+    letter-spacing: .08em;
+}
+
+.window-close {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #e6a3ff;
+    border-radius: 6px;
+    background: #210e34;
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.window-close:hover {
+    background: #a43dce;
+}
+
+.window-content {
+    padding: 22px;
+    overflow-y: auto;
+    line-height: 1.7;
+}
+
+.window-content h2 {
+    color: #f0c7ff;
+    font-family: Georgia, serif;
+}
+
+.window-content a {
+    color: #e6a3ff;
+    text-decoration-color: #9954cf;
+    text-underline-offset: 4px;
+}
+
+.window-content a:hover {
+    color: #fff;
+}
+
+.window-content img {
+    max-width: 100%;
+    height: auto;
+}
+
+.profile-photo {
+    display: block;
+    width: min(100%, 380px);
+    margin: 18px auto;
+    border: 2px solid #b66bff;
+    border-radius: 12px;
+    box-shadow: 0 0 22px rgba(173, 83, 255, .3);
+}
+
+.window-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 12px 16px;
+    border-top: 1px solid #563477;
+    background: #190d27;
+    color: #d9a2ff;
+    font-size: .75rem;
+}
+
+.window-footer button,
+.start-button {
+    padding: 9px 13px;
+    border: 1px solid #bd70ff;
+    border-radius: 6px;
+    background: #32164b;
+    color: #fff;
+    cursor: pointer;
+}
+
+.window-footer button:hover,
+.start-button:hover {
+    background: #7133a1;
+    box-shadow: 0 0 12px rgba(198, 116, 255, .3);
+}
+
+/* Blog posts */
+
+.post {
+    margin: 18px 0;
+    padding: 16px;
+    border: 1px solid #7545a3;
+    border-radius: 10px;
+    background: rgba(31, 15, 49, .82);
+}
+
+.post > span {
+    color: #d9a2ff;
+    font-size: .75rem;
+    letter-spacing: .12em;
+}
+
+.post h3 {
+    margin: 10px 0;
+    color: #f8edff;
+}
+
+.post a {
+    color: #e6a3ff;
+}
+
+.article-media {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.media-item {
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid #bd70ff;
+    border-radius: 8px;
+    background: #160c22;
+}
+
+.media-item img,
+.media-item video {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.media-item img {
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    transition: transform .25s ease;
+}
+
+.media-item:hover img {
+    transform: scale(1.04);
+}
+
+/* Favorites */
+
+.fav-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 16px 0;
+}
+
+.fav-tab {
+    padding: 9px 12px;
+    border: 1px solid #9a59cf;
+    border-radius: 8px;
+    background: #21122f;
+    color: #f8edff;
+    cursor: pointer;
+}
+
+.fav-tab:hover,
+.fav-tab.active {
+    background: #7b2cff;
+    border-color: #e6a3ff;
+    box-shadow: 0 0 12px rgba(198, 116, 255, .35);
+}
+
+.fav-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.fav-card {
+    min-width: 0;
+    padding: 12px;
+    border: 1px solid #7545a3;
+    border-radius: 10px;
+    background: rgba(31, 15, 49, .82);
+}
+
+.fav-card h3 {
+    margin-top: 0;
+    overflow-wrap: anywhere;
+    color: #f0c7ff;
+}
+
+.fav-card p {
+    overflow-wrap: anywhere;
+}
+
+.fav-type {
+    color: #d9a2ff;
+    font-size: .75rem;
+    letter-spacing: .1em;
+}
+
+/* Taskbar */
+
+.taskbar {
+    position: fixed;
+    z-index: 20;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    min-height: 58px;
+    padding: 10px 20px;
+    border-top: 1px solid #7545a3;
+    background: rgba(17, 8, 29, .96);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 -5px 25px rgba(0, 0, 0, .25);
+}
+
+.taskbar-message {
+    color: #d9a2ff;
+    font-size: .75rem;
+    text-align: center;
+}
+
+.taskbar-time {
+    color: #f0c7ff;
+    font-size: .75rem;
+    white-space: nowrap;
+}
+
+/* Decorations */
+
+.desktop-sparkles {
+    position: fixed;
+    z-index: 0;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    color: rgba(210, 145, 255, .45);
+}
+
+.desktop-sparkles span {
+    position: absolute;
+    font-size: 22px;
+    animation: sparkle 3s ease-in-out infinite alternate;
+}
+
+.desktop-sparkles span:nth-child(1) {
+    top: 20%;
+    left: 7%;
+}
+
+.desktop-sparkles span:nth-child(2) {
+    top: 38%;
+    right: 8%;
+}
+
+.desktop-sparkles span:nth-child(3) {
+    top: 68%;
+    left: 12%;
+}
+
+.desktop-sparkles span:nth-child(4) {
+    top: 75%;
+    right: 14%;
+}
+
+.desktop-sparkles span:nth-child(5) {
+    top: 12%;
+    right: 23%;
+}
+
+.desktop-sparkles span:nth-child(6) {
+    top: 55%;
+    left: 48%;
+}
+
+@keyframes sparkle {
+    from {
+        opacity: .25;
+        transform: scale(.8) rotate(0deg);
+    }
+    to {
+        opacity: .9;
+        transform: scale(1.2) rotate(18deg);
+    }
+}
+
+/* Responsive layout */
+
+@media (max-width: 600px) {
+    .desktop {
+        padding: 12px 14px 85px;
+    }
+
+    .desktop-top {
+        font-size: .68rem;
+    }
+
+    .desktop-hero {
+        padding-top: 35px;
+    }
+
+    .icon-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .desktop-icon {
+        min-height: 95px;
+        padding: 10px 4px;
+    }
+
+    .icon-picture {
+        width: 42px;
+        height: 42px;
+        font-size: 1.5rem;
+    }
+
+    .window-content {
+        padding: 15px;
+    }
+
+    .fav-list {
+        grid-template-columns: 1fr;
+    }
+
+    .taskbar {
+        padding: 9px 10px;
+    }
+
+    .taskbar-time {
+        display: none;
+    }
+
+    .taskbar-message {
+        font-size: .65rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .article-media {
+        grid-template-columns: 1fr;
+    }
+}
