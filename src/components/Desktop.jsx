@@ -32,38 +32,41 @@ const articles = [
     },
 ];
 
-// Edit these lists to add your personal favourites.
 const favorites = {
     albums: [
         {
-            title: 'Album name',
-            creator: 'Artist name',
-            note: 'My favourite tracks and why I love this album.',
-            url: '',
+            title: 'Destiné Supremacy',
+            creator: 'Aya Nakamura',
+            note: "I don't even have to explain, my pretty girls know ",
+            details :"Favs songs : DIS MOI ft Shenseea, J'AI VU, BUENO",
+            url: 'https://open.spotify.com/intl-fr/album/7Ms8YCAXjDFwICEdVlbs5I',
+            img: "https://i.pinimg.com/736x/ee/7e/94/ee7e944dd4df7555fbf65de741903ed2.jpg"
         },
     ],
     books: [
         {
-            title: 'Book title',
-            creator: 'Author name',
-            note: 'A book I would recommend.',
-            url: '',
+            title: 'One Last Job',
+            creator: 'Anise Starre',
+            img:"https://i.pinimg.com/1200x/be/47/9b/be479b7c624f7b87461a91cb37448572.jpg",
+            note: 'MAN.',
+            details: "WORKPLACE ROMANCE 101, and we love it",
+            url: 'https://www.amazon.ca/One-Last-Job-workplace-contemporary/dp/B0C9G8QGFS',
         },
     ],
     youtubers: [
         {
-            title: 'YouTuber name',
-            creator: 'YouTube',
-            note: 'Videos I never get tired of watching.',
-            url: '',
+            title: 'FEMME EBENE',
+            creator: 'She litterally raised me',
+            note: 'Portée disparu depuis le 7 septembre 2025. PLEASE FIFI COME BACK',
+            url: 'https://www.youtube.com/channel/UCDmQOkiHpTESdd4hVe5bxiw',
         },
     ],
     influencers: [
         {
-            title: 'Influencer name',
-            creator: 'Social media',
-            note: 'Style, content or personality I love.',
-            url: '',
+            title: 'THE GIRL WITH THE LIST',
+            creator: 'abigailprtr',
+            note: 'Creative, funny, personality I love, fuck them kids',
+            url: 'https://www.instagram.com/abigailprtr/',
         },
     ],
 };
@@ -151,6 +154,8 @@ function Desktop() {
                             <h3>{fav.title}</h3>
                             <p>{fav.creator}</p>
                             <p>{fav.note}</p>
+                            <p>{fav.details}</p>
+                            <img src={fav.img} />
 
                             {fav.url && (
                                 <a
@@ -159,8 +164,9 @@ function Desktop() {
                                     rel="noreferrer"
                                 >
                                     Check it out ↗
-                                </a>
-                            )}
+                                </a>)
+
+                            }
                         </article>
                     ))}
                 </div>
@@ -227,7 +233,12 @@ function Desktop() {
 
                         <article className="post">
                             <span>001 // WEBSITE</span>
-                            <h3>Crochet website (from back in the days) — DO NOT JUDGE</h3>
+                            <h3>Crochet website (from back in the days) — DO NOT JUDGE{" "}
+                                <a href="https://lesressourcescrochet.neocities.org/"
+                                   target={"_blank"}
+                                   rel="noreferrer">
+                                Link ↗
+                            </a></h3>
                             <p>
                                 ⭐⭐⭐☆☆ 3 stars, thanks to{' '}
                                 <a href="https://www.notion.com/"
@@ -251,7 +262,7 @@ function Desktop() {
                         <article className="post">
                             <span>003 // PROM DRESS</span>
                             <h3>Prom dress creation</h3>
-                            <p>A dress made with love and a lot of patience.</p>
+                            <p>A dress made with love, a lot of patience and tears (sweat too).</p>
                         </article>
 
                         <article className="post">
