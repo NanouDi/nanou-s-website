@@ -1,0 +1,14 @@
+[33mcommit 5d70a6ddf34bc1a04c4c0d8acc7e1ba91c4dd913[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: Nabintou Diakite <ndiak071@uottawa.ca>
+Date:   Thu Oct 29 00:30:55 2026 -0400
+
+    adding a CMS
+
+ studio/schemaTypes/articleType.ts        | 50 [32m+++++++++++++++++[m
+ studio/schemaTypes/favoriteType.ts       | 71 [32m++++++++++++++++++++++++[m
+ studio/schemaTypes/nowPlayingType.ts     | 44 [32m+++++++++++++++[m
+ studio/schemaTypes/photoType.ts          | 43 [32m+++++++++++++++[m
+ studio/schemaTypes/prettiestPhotoType.ts | 37 [32m+++++++++++++[m
+ studio/schemaTypes/projectType.ts        | 57 [32m+++++++++++++++++++[m
+ studio/schemaTypes/siteSettingsType.ts   | 95 [32m++++++++++++++++++++++++++++++++[m
+ 7 files changed, 397 insertions(+)

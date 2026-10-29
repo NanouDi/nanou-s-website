@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import './Desktop.css';
 import ArticleMedia from './ArticleMedia';
+import YouTubeEmbed from './YouTubeEmbed';
 
 const desktopItems = [
     { id: 'about', icon: '✨', label: 'About Me' },
@@ -10,7 +11,7 @@ const desktopItems = [
     { id: 'prettiest', icon: '💅', label: 'prettiest' },
     { id: 'projects', icon: '🕹️', label: 'Projects' },
     { id: 'favs', icon: '💌', label: 'Favs' },
-    { id: 'contact', icon: '💌', label: 'Socials' },
+    { id: 'contact', icon: '🤳🏽', label: 'Socials' },
 ];
 
 // Add your own articles here.
@@ -20,8 +21,7 @@ const articles = [
         category: 'LIFE',
         title: 'Welcome to my digital diary',
         text: 'Thoughts, stories and little life updates.',
-        media: [
-        ],
+        media: [],
     },
     {
         id: 2,
@@ -37,30 +37,35 @@ const favorites = {
         {
             title: 'Destiné Supremacy',
             creator: 'Aya Nakamura',
-            note: "I don't even have to explain, my pretty girls know ",
-            details :"Favs songs : DIS MOI ft Shenseea, J'AI VU, BUENO",
+            note: "I don't even have to explain, my pretty girls know",
+            details: "Fav songs: DIS MOI ft Shenseea, J'AI VU, BUENO",
             url: 'https://open.spotify.com/intl-fr/album/7Ms8YCAXjDFwICEdVlbs5I',
-            img: "https://i.pinimg.com/736x/ee/7e/94/ee7e944dd4df7555fbf65de741903ed2.jpg"
+            img: 'https://i.pinimg.com/736x/ee/7e/94/ee7e944dd4df7555fbf65de741903ed2.jpg',
+            youtubeUrl: 'https://www.youtube.com/watch?v=2ssEuCtAD9g&list=RD2ssEuCtAD9g&start_radio=1',
         },
     ],
+
     books: [
         {
             title: 'One Last Job',
             creator: 'Anise Starre',
-            img:"https://i.pinimg.com/1200x/be/47/9b/be479b7c624f7b87461a91cb37448572.jpg",
+            img: 'https://i.pinimg.com/1200x/be/47/9b/be479b7c624f7b87461a91cb37448572.jpg',
             note: 'MAN.',
-            details: "WORKPLACE ROMANCE 101, and we love it",
+            details: 'WORKPLACE ROMANCE 101, and we love it',
             url: 'https://www.amazon.ca/One-Last-Job-workplace-contemporary/dp/B0C9G8QGFS',
         },
     ],
+
     youtubers: [
         {
             title: 'FEMME EBENE',
-            creator: 'She litterally raised me',
-            note: 'Portée disparu depuis le 7 septembre 2025. PLEASE FIFI COME BACK',
+            creator: 'She literally raised me',
+            note: 'Portée disparue depuis le 7 septembre 2025. PLEASE FIFI COME BACK',
             url: 'https://www.youtube.com/channel/UCDmQOkiHpTESdd4hVe5bxiw',
+            youtubeUrl: 'https://youtu.be/g_lHnmuP6lc',
         },
     ],
+
     influencers: [
         {
             title: 'THE GIRL WITH THE LIST',
@@ -153,9 +158,21 @@ function Desktop() {
 
                             <h3>{fav.title}</h3>
                             <p>{fav.creator}</p>
-                            <p>{fav.note}</p>
-                            <p>{fav.details}</p>
-                            <img src={fav.img} />
+
+                            {fav.note && <p>{fav.note}</p>}
+                            {fav.details && <p>{fav.details}</p>}
+
+                            {fav.img && (
+                                <img
+                                    src={fav.img}
+                                    alt={fav.title}
+                                    className="fav-image"
+                                />
+                            )}
+
+                            {fav.youtubeUrl && (
+                                <YouTubeEmbed url={fav.youtubeUrl} />
+                            )}
 
                             {fav.url && (
                                 <a
@@ -164,9 +181,8 @@ function Desktop() {
                                     rel="noreferrer"
                                 >
                                     Check it out ↗
-                                </a>)
-
-                            }
+                                </a>
+                            )}
                         </article>
                     ))}
                 </div>
@@ -210,7 +226,6 @@ function Desktop() {
                     <>
                         <h2>My visual diary 📸</h2>
                         <p>Memories, outfits, places and random moments.</p>
-                        <p></p>
                     </>
                 );
 
@@ -233,19 +248,33 @@ function Desktop() {
 
                         <article className="post">
                             <span>001 // WEBSITE</span>
-                            <h3>Crochet website (from back in the days) — DO NOT JUDGE{" "}
-                                <a href="https://lesressourcescrochet.neocities.org/"
-                                   target={"_blank"}
-                                   rel="noreferrer">
-                                Link ↗
-                            </a></h3>
+                            <h3>
+                                Crochet website (from back in the days) — DO NOT JUDGE{' '}
+                                <a
+                                    href="https://lesressourcescrochet.neocities.org/"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                >
+                                    Link ↗
+                                </a>
+                            </h3>
                             <p>
                                 ⭐⭐⭐☆☆ 3 stars, thanks to{' '}
-                                <a href="https://www.notion.com/"
-                                   target="_blank" rel="noreferrer">Notion</a>
+                                <a
+                                    href="https://www.notion.com/"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                >
+                                    Notion
+                                </a>
                                 {' '}and{' '}
-                                <a href="https://www.w3schools.com/"
-                                   target="_blank" rel="noreferrer">W3Schools</a>.
+                                <a
+                                    href="https://www.w3schools.com/"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                >
+                                    W3Schools
+                                </a>.
                             </p>
                         </article>
 
@@ -253,8 +282,13 @@ function Desktop() {
                             <span>002 // WEBSITE</span>
                             <h3>
                                 MNU Simulation Training Website{' '}
-                                <a href="https://courslibmnu2024.neocities.org/"
-                                   target="_blank" rel="noreferrer">Link ↗</a>
+                                <a
+                                    href="https://courslibmnu2024.neocities.org/"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                >
+                                    Link ↗
+                                </a>
                             </h3>
                             <p>Lowkey the same idea, but more professional.</p>
                         </article>
@@ -262,7 +296,10 @@ function Desktop() {
                         <article className="post">
                             <span>003 // PROM DRESS</span>
                             <h3>Prom dress creation</h3>
-                            <p>A dress made with love, a lot of patience and tears (sweat too).</p>
+                            <p>
+                                A dress made with love, a lot of patience and tears
+                                (sweat too).
+                            </p>
                         </article>
 
                         <article className="post">
@@ -299,17 +336,35 @@ function Desktop() {
                     <>
                         <h2>Let's connect 💌</h2>
                         <p>Want to collaborate or say hello? I don't bite 🤣</p>
+
                         <p>
-                            <a href="https://www.instagram.com/awesome_nanou/"
-                               target="_blank" rel="noreferrer">Instagram ↗</a>
+                            <a
+                                href="https://www.instagram.com/awesome_nanou/"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                Instagram ↗
+                            </a>
                         </p>
+
                         <p>
-                            <a href="https://www.tiktok.com/@awsome_nanou"
-                               target="_blank" rel="noreferrer">TikTok ↗</a>
+                            <a
+                                href="https://www.tiktok.com/@awsome_nanou"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                TikTok ↗
+                            </a>
                         </p>
+
                         <p>
-                            <a href="https://www.patreon.com/c/NanouDi"
-                               target="_blank" rel="noreferrer">Patreon ↗</a>
+                            <a
+                                href="https://www.patreon.com/c/NanouDi"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                Patreon ↗
+                            </a>
                         </p>
                     </>
                 );
@@ -333,7 +388,7 @@ function Desktop() {
                     A little bit of chaos. A lot of vibes.
                 </p>
                 <div className="hero-decoration">
-                    ✦　⋆｡°✩　♡　✩°｡⋆　✦
+                    ✦⋆｡°✩♡✩°｡⋆✦
                 </div>
             </header>
 
@@ -368,6 +423,7 @@ function Desktop() {
                         <span id="window-title">
                             {windowTitles[activeWindow]}
                         </span>
+
                         <button
                             className="window-close"
                             onClick={closeWindow}
