@@ -1,8 +1,9 @@
-
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { PortableText } from '@portabletext/react';
 import './Desktop.css';
 import ArticleMedia from './ArticleMedia';
 import YouTubeEmbed from './YouTubeEmbed';
+import { getArticles } from '../sanityQueries';
 
 const desktopItems = [
     { id: 'about', icon: '✨', label: 'About Me' },
@@ -12,24 +13,6 @@ const desktopItems = [
     { id: 'projects', icon: '🕹️', label: 'Projects' },
     { id: 'favs', icon: '💌', label: 'Favs' },
     { id: 'contact', icon: '🤳🏽', label: 'Socials' },
-];
-
-// Add your own articles here.
-const articles = [
-    {
-        id: 1,
-        category: 'LIFE',
-        title: 'Welcome to my digital diary',
-        text: 'Thoughts, stories and little life updates.',
-        media: [],
-    },
-    {
-        id: 2,
-        category: 'TECH',
-        title: 'Building my own website',
-        text: 'My journey into the world of web development.',
-        media: [],
-    },
 ];
 
 const favorites = {
@@ -82,11 +65,85 @@ const favoriteLabels = {
     youtubers: '▶️ YouTubers',
     influencers: '💋 Influencers',
 };
+const portableTextComponents = {
+    types: {
+        image: ({ value }) => {
+            const imageUrl = value?.asset?.url;
+
+            if (!imageUrl) return null;
+
+            return (
+                <figure>
+                    <img
+                        className="article-content-image"
+                        src={imageUrl}
+                        alt={value.alt || ''}
+                    />
+                    {value.caption && (
+                        <figcaption>{value.caption}</figcaption>
+                    )}
+                </figure>
+            );
+        },
+
+        file: ({ value }) => {
+            const fileUrl = value?.asset?.url;
+
+            if (!fileUrl) return null;
+
+            return (
+                <p>
+                    <a
+                        href={fileUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        download={value.asset.originalFilename}
+                    >
+                        📎 {value.caption || value.asset.originalFilename || 'Open attachment'}
+                    </a>
+                </p>
+            );
+        },
+
+        noteList: ({ value }) => (
+            <ul className="article-note-list">
+                {(value.items || []).map((item, index) => (
+                    <li key={index}>{item}</li>
+                ))}
+            </ul>
+        ),
+
+        ranking: ({ value }) => (
+            <div className="article-ranking">
+                {(value.tiers || []).map((tier, index) => (
+                    <div className="ranking-tier" key={index}>
+                        <strong className="ranking-tier-label">
+                            {tier.label}
+                        </strong>
+                        <span>{tier.items}</span>
+                    </div>
+                ))}
+            </div>
+        ),
+    },
+};
 
 function Desktop() {
     const [activeWindow, setActiveWindow] = useState(null);
     const [activeFavCategory, setActiveFavCategory] = useState('albums');
+    const [articles, setArticles] = useState([]);
+    const [articlesLoading, setArticlesLoading] = useState(true);
+    const [articlesError, setArticlesError] = useState('');
 
+    useEffect(() => {
+        getArticles()
+            .then(setArticles)
+            .catch((error) => {
+                console.error('Failed to load Sanity articles:', error);
+                setArticlesError('Unable to load posts right now.');
+            })
+            .finally(() => setArticlesLoading(false));
+    }, []);
     function openWindow(id) {
         setActiveWindow(id);
     }
@@ -96,23 +153,63 @@ function Desktop() {
     }
 
     function renderBlog() {
+        if (articlesLoading) {
+            return <p>Loading my digital diary... ♡</p>;
+        }
+
+        if (articlesError) {
+            return <p>{articlesError}</p>;
+        }
+
         return (
             <>
                 <h2>Latest entries ♡</h2>
                 <p>Welcome to my very unserious digital diary.</p>
 
-                {articles.map((article) => (
-                    <article className="post" key={article.id}>
-                        <span>
-                            {String(article.id).padStart(3, '0')}
-                            {' // '}
-                            {article.category}
-                        </span>
+                {articles.length === 0 && (
+                    <p>No posts yet. Time to publish something in Sanity! ♡</p>
+                )}
+
+                {articles.map((article, index) => (
+                    <article className="post" key={article._id}>
+                    <span>
+                        {String(index + 1).padStart(3, '0')}
+                        {' // '}
+                        {article.category || 'LIFE'}
+                    </span>
 
                         <h3>{article.title}</h3>
-                        <p>{article.text}</p>
 
-                        <ArticleMedia media={article.media} />
+                        {article.publishedAt && (
+                            <p>
+                                {new Date(article.publishedAt).toLocaleDateString()}
+                            </p>
+                        )}
+
+                        {(article.excerpt || article.text) && (
+                            <p>{article.excerpt || article.text}</p>
+                        )}
+
+                        {article.coverImage?.asset?.url && (
+                            <img
+                                className="article-cover"
+                                src={article.coverImage.asset.url}
+                                alt={article.title}
+                            />
+                        )}
+
+                        {article.content?.length > 0 && (
+                            <div className="article-body">
+                                <PortableText
+                                    value={article.content}
+                                    components={portableTextComponents}
+                                />
+                            </div>
+                        )}
+
+                        {article.media?.length > 0 && (
+                            <ArticleMedia media={article.media} />
+                        )}
                     </article>
                 ))}
             </>
